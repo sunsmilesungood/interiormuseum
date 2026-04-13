@@ -373,9 +373,57 @@ export default function NewExpertPage() {
                   />
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group mb-4">
-                    <label>유튜브 URL</label>
+                <div className="form-group mb-4">
+                  <label>포트폴리오</label>
+                  <div className="mt-1">
+                    <input
+                      type="file"
+                      id={`thumbnail-${index}`}
+                      className="hidden"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          updatePortfolio(
+                            index,
+                            "youtubeThumbnail",
+                            file.name,
+                          );
+                          updatePortfolio(index, "thumbnailFile", file);
+                          updatePortfolio(
+                            index,
+                            "thumbnailPreview",
+                            URL.createObjectURL(file),
+                          );
+                        }
+                      }}
+                    />
+                    {port.thumbnailPreview ? (
+                      <label
+                        htmlFor={`thumbnail-${index}`}
+                        className="block relative w-full max-w-full rounded-lg overflow-hidden border border-[var(--color-border)] group cursor-pointer mb-2"
+                        title="썸네일 이미지 교체"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={port.thumbnailPreview}
+                          alt="Thumbnail Preview"
+                          className="w-full h-auto block"
+                        />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
+                          <ImageIcon size={24} />
+                          <span className="text-sm font-medium mt-1">썸네일 교체</span>
+                        </div>
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`thumbnail-${index}`}
+                        className="!flex items-center justify-center gap-2 w-full h-[46px] border border-[var(--color-border)] rounded-[var(--radius-md)] bg-white text-[var(--color-text-secondary)] text-sm font-medium hover:bg-gray-50 cursor-pointer transition-colors px-4 mb-2"
+                      >
+                        <ImageIcon size={18} className="text-gray-400" />
+                        <span>썸네일 이미지 업로드</span>
+                      </label>
+                    )}
                     <input
                       type="url"
                       className="form-control"
@@ -385,59 +433,6 @@ export default function NewExpertPage() {
                       }
                       placeholder="https://youtube.com/watch?v=..."
                     />
-                  </div>
-                  <div className="form-group mb-4">
-                    <label>유튜브 썸네일</label>
-                    <div className="mt-1">
-                      <input
-                        type="file"
-                        id={`thumbnail-${index}`}
-                        className="hidden"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            updatePortfolio(
-                              index,
-                              "youtubeThumbnail",
-                              file.name,
-                            );
-                            updatePortfolio(index, "thumbnailFile", file);
-                            updatePortfolio(
-                              index,
-                              "thumbnailPreview",
-                              URL.createObjectURL(file),
-                            );
-                          }
-                        }}
-                      />
-                      {port.thumbnailPreview ? (
-                        <label 
-                          htmlFor={`thumbnail-${index}`}
-                          className="block relative w-full max-w-[240px] aspect-video rounded-lg overflow-hidden border border-[var(--color-border)] group cursor-pointer"
-                          title="썸네일 이미지 교체"
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img 
-                            src={port.thumbnailPreview} 
-                            alt="Thumbnail Preview" 
-                            className="w-full h-full object-cover" 
-                          />
-                          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
-                            <ImageIcon size={24} />
-                            <span className="text-sm font-medium mt-1">썸네일 교체</span>
-                          </div>
-                        </label>
-                      ) : (
-                        <label
-                          htmlFor={`thumbnail-${index}`}
-                          className="flex items-center justify-center gap-2 w-full h-[46px] border border-[var(--color-border)] rounded-[var(--radius-md)] bg-white text-[var(--color-text-secondary)] text-sm font-medium hover:bg-gray-50 cursor-pointer transition-colors px-4"
-                        >
-                          <ImageIcon size={18} className="text-gray-400" />
-                          <span>썸네일 이미지 업로드</span>
-                        </label>
-                      )}
-                    </div>
                   </div>
                 </div>
                 <div className="form-group mb-0">
