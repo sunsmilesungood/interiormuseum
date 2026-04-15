@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import { Expert } from "@/data/dummyExperts";
 import TrustBanner from "@/components/TrustBanner";
 import PortfolioCard from "@/components/PortfolioCard";
+import DeleteExpertButton from "./DeleteExpertButton";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -105,7 +106,7 @@ export default async function ExpertDetailPage({ params }: Props) {
                 ))}
               </div>
 
-              <div style={{ display: "flex", gap: "10px", marginTop: "1rem" }}>
+              <div style={{ display: "flex", gap: "10px", marginTop: "1rem", flexWrap: "wrap" }}>
                 <Link
                   href="/#contact"
                   className="btn-contact"
@@ -125,6 +126,11 @@ export default async function ExpertDetailPage({ params }: Props) {
                 >
                   프로필 수정
                 </Link>
+                <DeleteExpertButton
+                  expertId={expert.id}
+                  profileImageUrl={expert.imageUrl}
+                  portfolioImageUrls={expert.portfolios?.map((p) => p.thumbnailUrl)}
+                />
               </div>
             </div>
           </div>
