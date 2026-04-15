@@ -233,7 +233,7 @@ export default async function Home() {
               />
               <div className="about__image-badge">
                 <strong>Since 2024</strong>
-                <span>신뢰를 회복하는 여정</span>
+                <span>정직한 시공의 시작</span>
               </div>
             </div>
           </div>
