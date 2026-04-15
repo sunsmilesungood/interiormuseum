@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ExpertsSection from "@/components/ExpertsSection";
 import TrustBanner from "@/components/TrustBanner";
 import ContactForm from "@/components/ContactForm";
@@ -120,22 +121,29 @@ export default async function Home() {
               style={{ animationDelay: "200ms" }}
             >
               <div className="hero__image-main hover:scale-[1.02] transition-transform duration-700">
-                <img
+                <Image
                   src="/images/hero-main.jpg"
                   alt="프리미엄 인테리어 공간"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  priority
                 />
               </div>
               <div className="hero__image-stack">
                 <div className="hero__image-small hover:scale-[1.03] transition-transform duration-500 delay-100">
-                  <img
+                  <Image
                     src="/images/hero-modern.jpg"
                     alt="모던 인테리어"
+                    fill
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
                 <div className="hero__image-small hover:scale-[1.03] transition-transform duration-500 delay-200">
-                  <img
+                  <Image
                     src="/images/hero-luxury.jpg"
                     alt="럭셔리 인테리어"
+                    fill
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               </div>
@@ -217,9 +225,11 @@ export default async function Home() {
               </div>
             </div>
             <div className="about__image-container animate-fade-in-right hover:shadow-2xl transition-all duration-700">
-              <img
+              <Image
                 src="/images/about-interior.jpg"
                 alt="인테리어 시공 현장"
+                fill
+                style={{ objectFit: "cover" }}
               />
               <div className="about__image-badge">
                 <strong>Since 2024</strong>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Expert } from "@/data/dummyExperts";
 
@@ -6,7 +7,7 @@ export default function ExpertCard({ expert }: { expert: Expert }) {
     <Link href={`/experts/${expert.id}`} className="expert-card group">
       <div className="expert-card__image overflow-hidden">
         {expert.imageUrl ? (
-          <img src={expert.imageUrl} alt={`${expert.name} 마스터`} className="" />
+          <Image src={expert.imageUrl} alt={`${expert.name} 마스터`} fill style={{ objectFit: "cover" }} />
         ) : (
           <div className="expert-card__image-placeholder" />
         )}

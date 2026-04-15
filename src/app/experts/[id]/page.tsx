@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 // import { dummyExperts } from "@/data/dummyExperts";
@@ -68,7 +69,7 @@ export default async function ExpertDetailPage({ params }: Props) {
           <div className="profile-layout">
             <div className="profile-image">
               {expert.imageUrl ? (
-                <img src={expert.imageUrl} alt={expert.name} />
+                <Image src={expert.imageUrl} alt={expert.name} fill style={{ objectFit: "cover" }} />
               ) : (
                 <div className="profile-image__placeholder" />
               )}

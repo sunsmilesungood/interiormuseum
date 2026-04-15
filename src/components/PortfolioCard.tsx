@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { Play, X } from "lucide-react";
 import { Portfolio } from "@/data/dummyExperts";
@@ -54,7 +55,7 @@ export default function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
           onClick={() => setOpen(true)}
           aria-label={`${portfolio.title} 영상 재생`}
         >
-          <img src={portfolio.thumbnailUrl} alt={portfolio.title} />
+          <Image src={portfolio.thumbnailUrl} alt={portfolio.title} fill style={{ objectFit: "cover" }} />
           <span className="portfolio-card__play">
             <Play fill="currentColor" size={24} />
           </span>
