@@ -1730,6 +1730,10 @@ textarea.form-control {
     gap: 20px;
   }
 
+  .header__nav a:not(.header__cta):not(.header__admin-btn) {
+    display: none;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -1795,9 +1799,5 @@ textarea.form-control {
 
   .contact-form {
     padding: 28px 20px;
-  }
-
-  .header__cta {
-    display: none;
   }
 }
