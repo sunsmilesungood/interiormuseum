@@ -644,6 +644,21 @@ h6 {
 }
 
 /* ============================================
+   Page: Experts List (/experts)
+   ============================================ */
+.experts-page-header {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.experts-page-header__title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+/* ============================================
    Section: Experts (전문가 리스트)
    ============================================ */
 .experts {

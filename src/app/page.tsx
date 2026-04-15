@@ -230,7 +230,7 @@ export default async function Home() {
       </section>
 
       {/* ========== Experts Section (Client Component) ========== */}
-      <ExpertsSection experts={experts} />
+      <ExpertsSection experts={experts} limit={8} />
 
       {/* ========== Trust Banner ========== */}
       <TrustBanner />
