@@ -1,5 +1,6 @@
 import ExpertsSection from "@/components/ExpertsSection";
 import TrustBanner from "@/components/TrustBanner";
+import ContactForm from "@/components/ContactForm";
 import { createClient } from "@/utils/supabase/server";
 import { Expert } from "@/data/dummyExperts";
 import {
@@ -281,108 +282,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <form
-              className="contact-form"
-              id="contactForm"
-              action="mailto:contact@interiormuseum.com"
-              method="post"
-              encType="text/plain"
-            >
-              <h3 className="contact-form__title">프로젝트 문의</h3>
-              <p className="contact-form__subtitle">
-                내용을 남겨주시면 확인 후 연락드리겠습니다.
-              </p>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="contact-name">
-                    이름 <span className="required">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="contact-name"
-                    name="name"
-                    className="form-control"
-                    placeholder="이름을 입력하세요"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contact-company">회사명</label>
-                  <input
-                    type="text"
-                    id="contact-company"
-                    name="company"
-                    className="form-control"
-                    placeholder="회사명 (선택)"
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="contact-email">
-                    이메일 <span className="required">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="contact-email"
-                    name="email"
-                    className="form-control"
-                    placeholder="email@example.com"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contact-phone">
-                    연락처 <span className="required">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="contact-phone"
-                    name="phone"
-                    className="form-control"
-                    placeholder="010-0000-0000"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="contact-category">시공 분야</label>
-                <select
-                  id="contact-category"
-                  name="category"
-                  className="form-control"
-                >
-                  <option value="">분야를 선택하세요</option>
-                  <option value="demolition">철거</option>
-                  <option value="tile">타일</option>
-                  <option value="carpentry">목공</option>
-                  <option value="wallpaper">도배</option>
-                  <option value="paint">도장</option>
-                  <option value="electric">전기</option>
-                  <option value="other">기타</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="contact-message">
-                  문의 내용 <span className="required">*</span>
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  className="form-control"
-                  placeholder="시공 분야, 예상 일정, 공간의 크기 등을 자유롭게 적어주세요."
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" className="btn-submit" id="btn-send">
-                메일 전송하기
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
