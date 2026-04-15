@@ -121,20 +121,20 @@ export default async function Home() {
             >
               <div className="hero__image-main hover:scale-[1.02] transition-transform duration-700">
                 <img
-                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop"
+                  src="/images/hero-main.jpg"
                   alt="프리미엄 인테리어 공간"
                 />
               </div>
               <div className="hero__image-stack">
                 <div className="hero__image-small hover:scale-[1.03] transition-transform duration-500 delay-100">
                   <img
-                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop"
+                    src="/images/hero-modern.jpg"
                     alt="모던 인테리어"
                   />
                 </div>
                 <div className="hero__image-small hover:scale-[1.03] transition-transform duration-500 delay-200">
                   <img
-                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=600&auto=format&fit=crop"
+                    src="/images/hero-luxury.jpg"
                     alt="럭셔리 인테리어"
                   />
                 </div>
@@ -218,7 +218,7 @@ export default async function Home() {
             </div>
             <div className="about__image-container animate-fade-in-right hover:shadow-2xl transition-all duration-700">
               <img
-                src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=900&auto=format&fit=crop"
+                src="/images/about-interior.jpg"
                 alt="인테리어 시공 현장"
               />
               <div className="about__image-badge">
