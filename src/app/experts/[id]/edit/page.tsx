@@ -75,9 +75,11 @@ export default function EditExpertPage() {
   };
 
   const updatePortfolio = (index: number, field: string, value: any) => {
-    const newPortfolios = [...portfolios];
-    newPortfolios[index] = { ...newPortfolios[index], [field]: value };
-    setPortfolios(newPortfolios);
+    setPortfolios((prev) => {
+      const newPortfolios = [...prev];
+      newPortfolios[index] = { ...newPortfolios[index], [field]: value };
+      return newPortfolios;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

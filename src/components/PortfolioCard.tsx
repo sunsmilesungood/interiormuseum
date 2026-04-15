@@ -55,7 +55,11 @@ export default function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
           onClick={() => setOpen(true)}
           aria-label={`${portfolio.title} 영상 재생`}
         >
-          <Image src={portfolio.thumbnailUrl} alt={portfolio.title} fill style={{ objectFit: "cover" }} />
+          {portfolio.thumbnailUrl ? (
+            <Image src={portfolio.thumbnailUrl} alt={portfolio.title} fill style={{ objectFit: "cover" }} />
+          ) : (
+            <div style={{ width: "100%", height: "100%", background: "var(--color-bg)" }} />
+          )}
           <span className="portfolio-card__play">
             <Play fill="currentColor" size={24} />
           </span>
