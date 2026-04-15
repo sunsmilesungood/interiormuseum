@@ -14,7 +14,7 @@ type Props = {
 
 export default async function ExpertDetailPage({ params }: Props) {
   const { id } = await params;
-  
+
   const supabase = await createClient();
   const { data: dbExpert } = await supabase
     .from("experts")
@@ -46,14 +46,17 @@ export default async function ExpertDetailPage({ params }: Props) {
     imageUrl: dbExpert.profile_image_url || null,
     quote: dbExpert.quote,
     longBio: dbExpert.bio,
-    tags: dbExpert.tags ? dbExpert.tags.split(",").map((t: string) => t.trim()) : [],
-    portfolios: dbExpert.portfolios?.map((p: any) => ({
-      id: p.id,
-      title: p.title,
-      description: p.description,
-      youtubeUrl: p.youtube_url,
-      thumbnailUrl: p.youtube_thumbnail_url,
-    })) || [],
+    tags: dbExpert.tags
+      ? dbExpert.tags.split(",").map((t: string) => t.trim())
+      : [],
+    portfolios:
+      dbExpert.portfolios?.map((p: any) => ({
+        id: p.id,
+        title: p.title,
+        description: p.description,
+        youtubeUrl: p.youtube_url,
+        thumbnailUrl: p.youtube_thumbnail_url,
+      })) || [],
   };
 
   return (
@@ -68,12 +71,12 @@ export default async function ExpertDetailPage({ params }: Props) {
               ) : (
                 <div className="profile-image__placeholder" />
               )}
-              <span
+              {/* <span
                 className="profile-image__badge"
                 style={{ backgroundColor: `var(--cat-${expert.categorySlug})` }}
               >
-                {expert.category} 마스터
-              </span>
+                {expert.category}
+              </span> */}
             </div>
             <div className="profile-content">
               <span className="profile-content__category">
@@ -103,7 +106,11 @@ export default async function ExpertDetailPage({ params }: Props) {
               </div>
 
               <div style={{ display: "flex", gap: "10px", marginTop: "1rem" }}>
-                <Link href="/#contact" className="btn-contact" style={{ margin: 0 }}>
+                <Link
+                  href="/#contact"
+                  className="btn-contact"
+                  style={{ margin: 0 }}
+                >
                   이 마스터에게 문의하기 →
                 </Link>
                 <Link
@@ -158,7 +165,9 @@ export default async function ExpertDetailPage({ params }: Props) {
       {/* ========== CTA Section ========== */}
       <section className="trust-banner" style={{ marginTop: "40px" }}>
         <div className="container">
-          <h2 className="trust-banner__title">이 마스터와 함께 하고 싶으신가요?</h2>
+          <h2 className="trust-banner__title">
+            이 마스터와 함께 하고 싶으신가요?
+          </h2>
           <p className="trust-banner__desc">
             영상으로 실력이 증명된 마스터에게 지금 문의하세요.
           </p>
