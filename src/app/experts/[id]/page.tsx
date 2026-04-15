@@ -43,7 +43,7 @@ export default async function ExpertDetailPage({ params }: Props) {
     specialty: dbExpert.specialty || "",
     bio: dbExpert.bio,
     experience: dbExpert.experience,
-    imageUrl: dbExpert.profile_image_url || "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=800&auto=format&fit=crop",
+    imageUrl: dbExpert.profile_image_url || null,
     quote: dbExpert.quote,
     longBio: dbExpert.bio,
     tags: dbExpert.tags ? dbExpert.tags.split(",").map((t: string) => t.trim()) : [],
@@ -63,7 +63,11 @@ export default async function ExpertDetailPage({ params }: Props) {
         <div className="container">
           <div className="profile-layout">
             <div className="profile-image">
-              <img src={expert.imageUrl} alt={expert.name} />
+              {expert.imageUrl ? (
+                <img src={expert.imageUrl} alt={expert.name} />
+              ) : (
+                <div className="profile-image__placeholder" />
+              )}
               <span
                 className="profile-image__badge"
                 style={{ backgroundColor: `var(--cat-${expert.categorySlug})` }}

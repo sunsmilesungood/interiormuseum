@@ -246,7 +246,23 @@ h6 {
 }
 
 .header__nav a:hover {
-  color: var(--color-navy);
+  /* color: var(--color-navy); */
+}
+
+.header__admin-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  background-color: var(--color-navy-light);
+  color: white !important;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-navy);
+}
+
+.header__admin-btn:hover {
+  background-color: var(--color-navy-dark);
 }
 
 .header__cta {
@@ -261,7 +277,7 @@ h6 {
 }
 
 .header__cta:hover {
-  background-color: var(--color-navy-dark);
+  /* background-color: var(--color-navy-dark); */
 }
 
 /* ============================================
@@ -764,6 +780,12 @@ h6 {
   object-fit: cover;
 }
 
+.expert-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-border-light);
+}
+
 .expert-card__category-badge {
   position: absolute;
   top: 16px;
@@ -1109,6 +1131,12 @@ textarea.form-control {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.profile-image__placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-border-light);
 }
 
 .profile-image__badge {

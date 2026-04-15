@@ -36,17 +36,18 @@ export default async function Home() {
     specialty: row.specialty || "",
     bio: row.bio,
     experience: row.experience,
-    imageUrl: row.profile_image_url || "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=800&auto=format&fit=crop",
+    imageUrl: row.profile_image_url || null,
     quote: row.quote,
     longBio: row.bio,
     tags: row.tags ? row.tags.split(",").map((t: string) => t.trim()) : [],
-    portfolios: row.portfolios?.map((p: any) => ({
-      id: p.id,
-      title: p.title,
-      description: p.description,
-      youtubeUrl: p.youtube_url,
-      thumbnailUrl: p.youtube_thumbnail_url,
-    })) || [],
+    portfolios:
+      row.portfolios?.map((p: any) => ({
+        id: p.id,
+        title: p.title,
+        description: p.description,
+        youtubeUrl: p.youtube_url,
+        thumbnailUrl: p.youtube_thumbnail_url,
+      })) || [],
   }));
 
   return (
@@ -86,13 +87,13 @@ export default async function Home() {
               >
                 <a
                   href="#experts"
-                  className="hero__btn-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300 active:scale-95"
+                  className="hero__btn-primary hover:shadow-lg transition-all duration-300 active:scale-95"
                 >
                   전문가 만나기 →
                 </a>
                 <a
                   href="#contact"
-                  className="hero__btn-secondary hover:-translate-y-1 hover:shadow-lg transition-all duration-300 active:scale-95 bg-white/50 backdrop-blur-sm"
+                  className="hero__btn-secondary bg-white/50 backdrop-blur-sm"
                 >
                   무료 상담 신청
                 </a>
@@ -174,7 +175,7 @@ export default async function Home() {
                 className="about__features animate-fade-in-up"
                 style={{ animationDelay: "300ms" }}
               >
-                <div className="about__feature hover:-translate-y-1 transition-transform duration-300">
+                <div className="about__feature">
                   <div className="about__feature-icon">
                     <PlayCircle size={22} />
                   </div>

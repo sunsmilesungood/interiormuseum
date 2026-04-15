@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Header() {
+export default async function Header() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <header className="header">
       <div className="header__inner container container--wide">
@@ -12,6 +18,11 @@ export default function Header() {
           <Link href="/#about">소개</Link>
           <Link href="/experts">전문가</Link>
           <Link href="/#contact">문의하기</Link>
+          {user && (
+            <Link href="/experts/new" className="header__admin-btn">
+              관리자
+            </Link>
+          )}
           <Link href="/#contact" className="header__cta">
             무료 상담 신청
           </Link>

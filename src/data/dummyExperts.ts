@@ -14,7 +14,7 @@ export type Expert = {
   specialty: string;
   bio: string;
   experience: string;
-  imageUrl: string;
+  imageUrl: string | null;
   quote?: string;
   longBio?: string;
   tags?: string[];
