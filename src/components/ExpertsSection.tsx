@@ -69,7 +69,6 @@ export default function ExpertsSection({
             <ExpertCard key={expert.id} expert={expert} />
           ))}
         </div>
-
         <div className="experts-more">
           {showContactLink ? (
             <Link href="/#contact" className="experts-more__btn">
