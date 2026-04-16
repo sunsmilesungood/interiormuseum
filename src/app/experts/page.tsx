@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { createClient } from "@/utils/supabase/server";
 import { Expert } from "@/data/dummyExperts";
 import ExpertsSection from "@/components/ExpertsSection";
@@ -11,11 +12,11 @@ const categoryMap: Record<string, string> = {
   electric: "전기",
 };
 
-export default async function ExpertsListPage() {
+async function ExpertsGrid() {
   const supabase = await createClient();
   const { data: dbExperts } = await supabase
     .from("experts")
-    .select("*, portfolios(*)")
+    .select("id, name, category, specialty, bio, experience, profile_image_url, quote, tags")
     .order("created_at", { ascending: false });
 
   const experts: Expert[] = (dbExperts || []).map((row: any) => ({
@@ -30,16 +31,42 @@ export default async function ExpertsListPage() {
     quote: row.quote,
     longBio: row.bio,
     tags: row.tags ? row.tags.split(",").map((t: string) => t.trim()) : [],
-    portfolios:
-      row.portfolios?.map((p: any) => ({
-        id: p.id,
-        title: p.title,
-        description: p.description,
-        youtubeUrl: p.youtube_url,
-        thumbnailUrl: p.youtube_thumbnail_url,
-      })) || [],
+    portfolios: [],
   }));
 
+  return <ExpertsSection experts={experts} showContactLink hideHeader />;
+}
+
+function ExpertsGridSkeleton() {
+  return (
+    <section className="experts" style={{ paddingTop: "2rem" }}>
+      <div className="container">
+        <div className="experts-grid">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              style={{
+                borderRadius: "1rem",
+                background: "var(--color-border, #e5e7eb)",
+                aspectRatio: "3/4",
+                animation: "pulse 1.5s ease-in-out infinite",
+                animationDelay: `${i * 80}ms`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+export default function ExpertsListPage() {
   return (
     <main style={{ paddingTop: "72px" }}>
       {/* ========== Page Header ========== */}
@@ -50,7 +77,9 @@ export default async function ExpertsListPage() {
       </section>
 
       {/* ========== Experts Grid ========== */}
-      <ExpertsSection experts={experts} showContactLink hideHeader />
+      <Suspense fallback={<ExpertsGridSkeleton />}>
+        <ExpertsGrid />
+      </Suspense>
     </main>
   );
 }
