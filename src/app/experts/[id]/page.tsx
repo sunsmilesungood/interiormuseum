@@ -18,6 +18,10 @@ export default async function ExpertDetailPage({ params }: Props) {
   const { id } = await params;
 
   const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const { data: dbExpert } = await supabase
     .from("experts")
     .select("*, portfolios(*)")
@@ -129,11 +133,13 @@ export default async function ExpertDetailPage({ params }: Props) {
                 >
                   프로필 수정
                 </Link>
-                <DeleteExpertButton
-                  expertId={expert.id}
-                  profileImageUrl={expert.imageUrl}
-                  portfolioImageUrls={expert.portfolios?.map((p) => p.thumbnailUrl)}
-                />
+                {user && (
+                  <DeleteExpertButton
+                    expertId={expert.id}
+                    profileImageUrl={expert.imageUrl}
+                    portfolioImageUrls={expert.portfolios?.map((p) => p.thumbnailUrl)}
+                  />
+                )}
               </div>
             </div>
           </div>
