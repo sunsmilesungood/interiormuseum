@@ -1,4 +1,5 @@
 import Image from "next/image";
+import HeroStats from "@/components/HeroStats";
 import ExpertsSection from "@/components/ExpertsSection";
 import TrustBanner from "@/components/TrustBanner";
 import ContactForm from "@/components/ContactForm";
@@ -108,20 +109,7 @@ export default async function Home() {
                   업체 정보 요청
                 </a>
               </div>
-              <div className="hero__stats">
-                <div>
-                  <div className="hero__stat-number">150+</div>
-                  <div className="hero__stat-label">공개된 작업 기록</div>
-                </div>
-                <div>
-                  <div className="hero__stat-number">2,800+</div>
-                  <div className="hero__stat-label">기록된 프로젝트</div>
-                </div>
-                <div>
-                  <div className="hero__stat-number">업체 정보</div>
-                  <div className="hero__stat-label">상시 안내</div>
-                </div>
-              </div>
+              <HeroStats />
             </div>
 
             <div
