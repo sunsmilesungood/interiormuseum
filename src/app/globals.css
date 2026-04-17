@@ -75,16 +75,6 @@
   --color-gold: #c4a35a;
   --color-gold-light: #faf5eb;
 
-  /* Category Colors */
-  --cat-demolition: #e8534a;
-  --cat-tile: #3b82c4;
-  --cat-carpentry: #c4873b;
-  --cat-wallpaper: #6ba368;
-  --cat-furniture: #a0856c;
-  --cat-electric: #d4a843;
-  --cat-total: #4a7fa5;
-  --cat-other: #9ca3af;
-
   /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -364,6 +354,7 @@ h6 {
   line-height: 1.25;
   margin-bottom: 24px;
   letter-spacing: -0.03em;
+  word-break: keep-all;
 }
 
 .hero__title em {
@@ -438,7 +429,6 @@ h6 {
   color: var(--color-text-tertiary);
   font-weight: 400;
 }
-
 
 /* Hero Images Grid */
 .hero__images {
@@ -815,31 +805,7 @@ h6 {
   font-size: 0.75rem;
   font-weight: 600;
   color: white;
-}
-
-.expert-card__category-badge--demolition {
-  background-color: var(--cat-demolition);
-}
-.expert-card__category-badge--tile {
-  background-color: var(--cat-tile);
-}
-.expert-card__category-badge--carpentry {
-  background-color: var(--cat-carpentry);
-}
-.expert-card__category-badge--wallpaper {
-  background-color: var(--cat-wallpaper);
-}
-.expert-card__category-badge--furniture {
-  background-color: var(--cat-furniture);
-}
-.expert-card__category-badge--electric {
-  background-color: var(--cat-electric);
-}
-.expert-card__category-badge--total {
-  background-color: var(--cat-total);
-}
-.expert-card__category-badge--other {
-  background-color: var(--cat-other);
+  background-color: var(--color-gold);
 }
 
 .expert-card__body {
@@ -1016,7 +982,7 @@ h6 {
 }
 
 .form-group label .required {
-  color: var(--cat-demolition);
+  color: #e8534a;
   margin-left: 2px;
 }
 
@@ -1564,6 +1530,7 @@ textarea.form-control {
 }
 
 .trust-banner__title {
+  word-break: keep-all;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 12px;
