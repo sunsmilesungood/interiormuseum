@@ -26,8 +26,10 @@ export default async function Home() {
     tile: "타일",
     carpentry: "목공",
     wallpaper: "도배",
-    paint: "도장",
+    furniture: "가구",
     electric: "전기",
+    total: "토탈",
+    other: "기타",
   };
 
   const experts: Expert[] = (dbExperts || []).map((row: any) => ({
@@ -63,25 +65,31 @@ export default async function Home() {
                 <span className="hero__badge-icon">
                   <Video size={14} />
                 </span>
-                영상으로 확인하는 전문가의 작업
+                영상으로 확인하는 작업의 과정
               </div>
               <h1
                 className="hero__title animate-fade-in-up"
                 style={{ animationDelay: "100ms" }}
               >
-                공간에 <em>예술</em>을 더하는
+                공간에 <em>감각</em>을 더하는
+                {/* <br />
+                인테리어 마스터를
+                <br />
+                만나보세요 */}
                 <br />
                 인테리어 마스터를
                 <br />
-                만나보세요
+                사람들의 시공 과정을
+                <br />
+                영상으로 직접 확인하세요
               </h1>
               <p
                 className="hero__desc animate-fade-in-up"
                 style={{ animationDelay: "200ms" }}
               >
-                단순한 시공이 아닌, 자부심과 장인 정신으로 공간을 완성하는
-                인테리어 전문가들을 소개합니다. 진정한 실력자들과 함께 신뢰할 수
-                있는 시공을 경험하세요.
+                인테리어뮤지엄은 시공자의 얼굴, 실명, 작업 과정이 담긴 영상을
+                기록하고 정리합니다. 공개된 시공 사례와 업체 정보를 통해 직접
+                비교하고 판단할 수 있도록 돕습니다.
               </p>
               <div
                 className="hero__actions animate-fade-in-up"
@@ -91,27 +99,27 @@ export default async function Home() {
                   href="#experts"
                   className="hero__btn-primary hover:shadow-lg transition-all duration-300 active:scale-95"
                 >
-                  전문가 만나기 →
+                  작업 기록 보기 →
                 </a>
                 <a
                   href="#contact"
                   className="hero__btn-secondary bg-white/50 backdrop-blur-sm"
                 >
-                  무료 상담 신청
+                  업체 정보 요청
                 </a>
               </div>
               <div className="hero__stats">
                 <div>
                   <div className="hero__stat-number">150+</div>
-                  <div className="hero__stat-label">영상 보유 전문가</div>
+                  <div className="hero__stat-label">공개된 작업 기록</div>
                 </div>
                 <div>
                   <div className="hero__stat-number">2,800+</div>
-                  <div className="hero__stat-label">완료된 프로젝트</div>
+                  <div className="hero__stat-label">기록된 프로젝트</div>
                 </div>
                 <div>
-                  <div className="hero__stat-number">98%</div>
-                  <div className="hero__stat-label">고객 만족도</div>
+                  <div className="hero__stat-number">업체 정보</div>
+                  <div className="hero__stat-label">상시 안내</div>
                 </div>
               </div>
             </div>
@@ -152,7 +160,7 @@ export default async function Home() {
                   <Video size={20} />
                 </span>
                 <div>
-                  <strong>영상으로 증명된 실력</strong>
+                  <strong>영상으로 확인하는 작업 과정</strong>
                   <span>작업 전 과정을 투명하게 공개</span>
                 </div>
               </div>
@@ -171,14 +179,14 @@ export default async function Home() {
                 className="about__title animate-fade-in-up"
                 style={{ animationDelay: "100ms" }}
               >
-                오직 실력으로 증명하는
+                과정으로 신뢰를 쌓는
                 <br />
-                <strong>공간의 마스터들</strong>
+                <strong>인테리어 아카이브</strong>
               </h2>
               <p className="about__desc">
-                인테리어뮤지엄은 수십 년간 기술과 감각을 갈고닦은 장인들을
-                세상에 알립니다. 말이 아닌 시공 사례로, 약속이 아닌 경력으로
-                스스로를 증명해온 분들과 함께 당신의 공간을 완성하세요.
+                인테리어뮤지엄은 시공자의 얼굴, 이름, 작업 과정이 담긴 영상을
+                기록하고 정리합니다. 공개된 시공 사례와 업체 정보를 통해
+                이용자가 직접 보고 비교하고 판단할 수 있도록 돕습니다.
               </p>
               <div
                 className="about__features animate-fade-in-up"
@@ -190,10 +198,7 @@ export default async function Home() {
                   </div>
                   <div className="about__feature-text">
                     <h4>현장 영상 공개</h4>
-                    <p>
-                      실제 시공 현장을 가감 없이 촬영한 영상을 통해 실력을
-                      증명합니다.
-                    </p>
+                    <p>공개 가능한 실제 시공 과정을 영상으로 기록합니다.</p>
                   </div>
                 </div>
                 <div className="about__feature">
@@ -201,10 +206,10 @@ export default async function Home() {
                     <Palette size={22} />
                   </div>
                   <div className="about__feature-text">
-                    <h4>예술가로서의 가치</h4>
+                    <h4>업체 정보 안내</h4>
                     <p>
-                      단순 시공자가 아닌, 공간 예술가로서의 자부심을
-                      지켜드립니다.
+                      시공자 실명, 업체 정보, 공개 가능한 면허 정보를 함께
+                      제공합니다.
                     </p>
                   </div>
                 </div>
@@ -216,9 +221,10 @@ export default async function Home() {
                     <Eye size={22} />
                   </div>
                   <div className="about__feature-text">
-                    <h4>투명한 소통</h4>
+                    <h4>직접 확인 후 진행</h4>
                     <p>
-                      시공 전 과정에서 고객과의 신뢰를 최우선으로 생각합니다.
+                      실제 견적, 계약, 시공, 하자보수는 해당 업체와 직접
+                      이루어집니다.
                     </p>
                   </div>
                 </div>
@@ -253,13 +259,16 @@ export default async function Home() {
             <div className="contact__info">
               <p className="contact__info-label">Contact Us</p>
               <h2 className="contact__info-title">
-                프로젝트를
+                프로젝트에
                 <br />
-                함께 시작해보세요
+                맞는 업체를 안내받아보세요
               </h2>
               <p className="contact__info-desc">
-                어떤 공간이든, 어떤 분야든 최적의 전문가를 매칭해드립니다.
-                문의를 남겨주시면 빠르게 확인 후 연락드리겠습니다.
+                희망하는 공간과 공사 내용을 남겨주시면, 공개된 시공 기록과 업체
+                정보를 바탕으로 확인 가능한 업체를 안내해드립니다.
+                <br />본 요청은 인테리어뮤지엄의 직접 상담이 아닌, 업체 정보
+                안내 및 상담 의사 전달을 위한 요청입니다. 실제 견적, 계약, 시공,
+                하자보수는 해당 업체와 이용자 간에 직접 진행됩니다.
               </p>
               <div className="contact__info-items">
                 <div className="contact__info-item">
@@ -271,7 +280,7 @@ export default async function Home() {
                     <p>contact@interiormuseum.com</p>
                   </div>
                 </div>
-                <div className="contact__info-item">
+                {/* <div className="contact__info-item">
                   <div className="contact__info-item-icon">
                     <Phone />
                   </div>
@@ -288,7 +297,7 @@ export default async function Home() {
                     <h4>오피스</h4>
                     <p>서울특별시 강남구 테헤란로 123</p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 

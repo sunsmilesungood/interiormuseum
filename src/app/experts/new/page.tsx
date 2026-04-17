@@ -212,8 +212,10 @@ export default function NewExpertPage() {
                 <option value="tile">타일</option>
                 <option value="carpentry">목공</option>
                 <option value="wallpaper">도배</option>
-                <option value="paint">도장</option>
+                <option value="furniture">가구</option>
                 <option value="electric">전기</option>
+                <option value="total">토탈</option>
+                <option value="other">기타</option>
               </select>
             </div>
           </div>

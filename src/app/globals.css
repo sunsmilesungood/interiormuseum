@@ -80,8 +80,10 @@
   --cat-tile: #3b82c4;
   --cat-carpentry: #c4873b;
   --cat-wallpaper: #6ba368;
-  --cat-paint: #9b6bb3;
+  --cat-furniture: #a0856c;
   --cat-electric: #d4a843;
+  --cat-total: #4a7fa5;
+  --cat-other: #9ca3af;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -357,7 +359,7 @@ h6 {
 }
 
 .hero__title {
-  font-size: 3.25rem;
+  font-size: 2.85rem;
   font-weight: 800;
   line-height: 1.25;
   margin-bottom: 24px;
@@ -436,6 +438,7 @@ h6 {
   color: var(--color-text-tertiary);
   font-weight: 400;
 }
+
 
 /* Hero Images Grid */
 .hero__images {
@@ -826,11 +829,17 @@ h6 {
 .expert-card__category-badge--wallpaper {
   background-color: var(--cat-wallpaper);
 }
-.expert-card__category-badge--paint {
-  background-color: var(--cat-paint);
+.expert-card__category-badge--furniture {
+  background-color: var(--cat-furniture);
 }
 .expert-card__category-badge--electric {
   background-color: var(--cat-electric);
+}
+.expert-card__category-badge--total {
+  background-color: var(--cat-total);
+}
+.expert-card__category-badge--other {
+  background-color: var(--cat-other);
 }
 
 .expert-card__body {
@@ -929,6 +938,7 @@ h6 {
   line-height: 1.8;
   color: var(--color-text-secondary);
   margin-bottom: 40px;
+  word-break: keep-all;
 }
 
 .contact__info-items {
@@ -1455,8 +1465,12 @@ textarea.form-control {
 }
 
 @keyframes yt-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .yt-modal-content {
@@ -1471,8 +1485,14 @@ textarea.form-control {
 }
 
 @keyframes yt-scale-in {
-  from { transform: scale(0.95); opacity: 0; }
-  to   { transform: scale(1);    opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .yt-modal-close {

@@ -84,9 +84,9 @@ export const dummyExperts: Expert[] = [
   {
     id: "expert-jung",
     name: "정민수",
-    category: "도장",
-    categorySlug: "paint",
-    specialty: "Painting Master · 도장 전문",
+    category: "가구",
+    categorySlug: "furniture",
+    specialty: "Furniture Master · 가구 전문",
     bio: "색 하나로 공간의 온도가 달라집니다. 조색부터 마감 코팅까지 직접 작업합니다.",
     experience: "경력 14년",
     imageUrl: "/images/experts/jeong-minsu.jpg",

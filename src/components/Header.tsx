@@ -24,7 +24,7 @@ export default async function Header() {
             </Link>
           )}
           <Link href="/#contact" className="header__cta">
-            무료 상담 신청
+            업체 정보 요청
           </Link>
         </nav>
       </div>

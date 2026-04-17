@@ -3,16 +3,17 @@ export default function TrustBanner() {
     <section className="trust-banner">
       <div className="container">
         <h2 className="trust-banner__title">
-          전문가의 작업을 영상으로 직접 보고 결정하세요
+          작업 과정을 직접 보고 비교한 뒤 결정하세요
         </h2>
         <p className="trust-banner__desc">
-          가장 정직하게 실력을 증명하는 마스터들이 기다리고 있습니다.
+          공개된 시공 기록과 업체 정보를 통해 이용자가 직접 확인하고 판단할 수
+          있도록 돕습니다.
         </p>
         <a
           href="#contact"
           className="trust-banner__btn hover:shadow-xl transition-all duration-300 active:scale-95 inline-block"
         >
-          무료 상담 신청하기 →
+          업체 상담 요청하기 →
         </a>
       </div>
     </section>

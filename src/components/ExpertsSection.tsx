@@ -12,9 +12,11 @@ const CATEGORIES = [
   "타일",
   "목공",
   "도배",
-  "도장",
+  "가구",
   "전기",
   "창호",
+  "토탈",
+  "기타",
 ];
 
 export default function ExpertsSection({
@@ -42,10 +44,12 @@ export default function ExpertsSection({
       <div className="container">
         {!hideHeader && (
           <div className="section-header">
-            <p className="section-header__label">Our Masters</p>
-            <h2 className="section-header__title">분야별 최고의 전문가들</h2>
+            <p className="section-header__label">Our ARCHIVE</p>
+            <h2 className="section-header__title">
+              분야별 작업 기록과 업체 정보
+            </h2>
             <p className="section-header__desc">
-              자부심을 가지고 공간을 완성하는 인테리어 마스터들을 만나보세요
+              분야별 시공 과정과 업체 정보를 직접 보고 비교할 수 있습니다
             </p>
           </div>
         )}

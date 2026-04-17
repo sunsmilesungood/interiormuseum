@@ -33,8 +33,10 @@ export default async function ExpertDetailPage({ params }: Props) {
     tile: "타일",
     carpentry: "목공",
     wallpaper: "도배",
-    paint: "도장",
+    furniture: "가구",
     electric: "전기",
+    total: "토탈",
+    other: "기타",
   };
 
   const expert: Expert = {
