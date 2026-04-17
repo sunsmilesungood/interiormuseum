@@ -40,33 +40,19 @@ export default function ContactForm() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="contact-company">회사명</label>
+            <label htmlFor="contact-expert">찾는 전문가 이름</label>
             <input
               type="text"
-              id="contact-company"
-              name="company"
+              id="contact-expert"
+              name="expertName"
               className="form-control"
-              placeholder="회사명 (선택)"
+              placeholder="전문가 이름 (선택)"
               disabled={isPending}
             />
           </div>
         </div>
 
         <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="contact-email">
-              이메일 <span className="required">*</span>
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              name="email"
-              className="form-control"
-              placeholder="email@example.com"
-              required
-              disabled={isPending}
-            />
-          </div>
           <div className="form-group">
             <label htmlFor="contact-phone">
               연락처 <span className="required">*</span>
@@ -78,6 +64,17 @@ export default function ContactForm() {
               className="form-control"
               placeholder="010-0000-0000"
               required
+              disabled={isPending}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="contact-address">공사 주소</label>
+            <input
+              type="text"
+              id="contact-address"
+              name="address"
+              className="form-control"
+              placeholder="공사 주소를 입력하세요"
               disabled={isPending}
             />
           </div>
@@ -111,7 +108,7 @@ export default function ContactForm() {
             id="contact-message"
             name="message"
             className="form-control"
-            placeholder="시공 분야, 예상 일정, 공간의 크기 등을 자유롭게 적어주세요."
+            placeholder="문의 내용을 자유롭게 적어주세요."
             required
             disabled={isPending}
           ></textarea>

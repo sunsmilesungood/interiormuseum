@@ -15,9 +15,9 @@ export async function sendContactEmail(
   formData: FormData,
 ): Promise<ContactFormState> {
   const name = formData.get("name") as string;
-  const company = formData.get("company") as string;
-  const email = formData.get("email") as string;
+  const expertName = formData.get("expertName") as string;
   const phone = formData.get("phone") as string;
+  const address = formData.get("address") as string;
   const category = formData.get("category") as string;
   const message = formData.get("message") as string;
 
@@ -45,22 +45,27 @@ export async function sendContactEmail(
             <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${name}</td>
           </tr>
           ${
-            company
+            expertName
               ? `
           <tr>
-            <td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">회사명</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${company}</td>
+            <td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">찾는 전문가</td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${expertName}</td>
           </tr>`
               : ""
           }
           <tr>
-            <td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">이메일</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${email}</td>
-          </tr>
-          <tr>
             <td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">연락처</td>
             <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${phone}</td>
           </tr>
+          ${
+            address
+              ? `
+          <tr>
+            <td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">공사 주소</td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">${address}</td>
+          </tr>`
+              : ""
+          }
           ${
             category
               ? `
@@ -75,9 +80,6 @@ export async function sendContactEmail(
             <td style="padding: 8px 12px; border-bottom: 1px solid #eee; white-space: pre-wrap;">${message}</td>
           </tr>
         </table>
-        <p style="margin-top: 16px; color: #888; font-size: 13px;">
-          회신 이메일: <a href="mailto:${email}">${email}</a>
-        </p>
       `,
     });
 
