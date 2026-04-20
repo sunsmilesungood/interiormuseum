@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "인테리어뮤지엄 | 믿을 수 있는 전문가 매칭",
+  title: "인테리어 영상 아카이브",
   description: "인테리어 마스터들의 검증된 시공 사례를 확인하세요.",
 };
 

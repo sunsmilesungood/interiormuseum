@@ -33,13 +33,13 @@ export default async function ExpertDetailPage({ params }: Props) {
   }
 
   const categoryMap: Record<string, string> = {
+    total: "토탈",
     demolition: "철거",
     tile: "타일",
     carpentry: "목공",
     wallpaper: "도배",
     furniture: "가구",
     electric: "전기",
-    total: "토탈",
     other: "기타",
   };
 
@@ -75,7 +75,12 @@ export default async function ExpertDetailPage({ params }: Props) {
           <div className="profile-layout">
             <div className="profile-image">
               {expert.imageUrl ? (
-                <Image src={expert.imageUrl} alt={expert.name} fill style={{ objectFit: "cover" }} />
+                <Image
+                  src={expert.imageUrl}
+                  alt={expert.name}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
               ) : (
                 <div className="profile-image__placeholder" />
               )}
@@ -113,7 +118,14 @@ export default async function ExpertDetailPage({ params }: Props) {
                 ))}
               </div>
 
-              <div style={{ display: "flex", gap: "10px", marginTop: "1rem", flexWrap: "wrap" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  marginTop: "1rem",
+                  flexWrap: "wrap",
+                }}
+              >
                 <Link
                   href="/#contact"
                   className="btn-contact"
@@ -137,7 +149,9 @@ export default async function ExpertDetailPage({ params }: Props) {
                   <DeleteExpertButton
                     expertId={expert.id}
                     profileImageUrl={expert.imageUrl}
-                    portfolioImageUrls={expert.portfolios?.map((p) => p.thumbnailUrl)}
+                    portfolioImageUrls={expert.portfolios?.map(
+                      (p) => p.thumbnailUrl,
+                    )}
                   />
                 )}
               </div>

@@ -23,13 +23,13 @@ export default async function Home() {
     .order("created_at", { ascending: false });
 
   const categoryMap: Record<string, string> = {
+    total: "토탈",
     demolition: "철거",
     tile: "타일",
     carpentry: "목공",
     wallpaper: "도배",
     furniture: "가구",
     electric: "전기",
-    total: "토탈",
     other: "기타",
   };
 
@@ -73,12 +73,6 @@ export default async function Home() {
                 style={{ animationDelay: "100ms" }}
               >
                 공간에 <em>감각</em>을 더하는
-                {/* <br />
-                인테리어 마스터를
-                <br />
-                만나보세요 */}
-                <br />
-                인테리어 마스터를
                 <br />
                 사람들의 시공 과정을
                 <br />

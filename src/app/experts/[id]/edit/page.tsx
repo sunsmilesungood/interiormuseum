@@ -9,15 +9,18 @@ export default function EditExpertPage() {
   const router = useRouter();
   const params = useParams();
   const expertId = params.id as string;
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [expertData, setExpertData] = useState<any>(null);
 
   const [profileImageName, setProfileImageName] = useState<string>("");
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
-  const [existingProfileImageUrl, setExistingProfileImageUrl] = useState<string>("");
-  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null);
+  const [existingProfileImageUrl, setExistingProfileImageUrl] =
+    useState<string>("");
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
+    null,
+  );
 
   // 포트폴리오(영상/이미지) 관리 상태
   const [portfolios, setPortfolios] = useState<any[]>([]);
@@ -30,27 +33,37 @@ export default function EditExpertPage() {
         .select("*, portfolios(*)")
         .eq("id", expertId)
         .single();
-        
+
       if (data) {
         setExpertData(data);
         if (data.profile_image_url) {
           setExistingProfileImageUrl(data.profile_image_url);
         }
-        
+
         if (data.portfolios && data.portfolios.length > 0) {
-          setPortfolios(data.portfolios.map((p: any) => ({
-            id: p.id,
-            title: p.title || "",
-            description: p.description || "",
-            youtubeUrl: p.youtube_url || "",
-            youtubeThumbnail: "",
-            existingThumbnailUrl: p.youtube_thumbnail_url || "",
-            thumbnailFile: null,
-            thumbnailPreview: null,
-          })));
+          setPortfolios(
+            data.portfolios.map((p: any) => ({
+              id: p.id,
+              title: p.title || "",
+              description: p.description || "",
+              youtubeUrl: p.youtube_url || "",
+              youtubeThumbnail: "",
+              existingThumbnailUrl: p.youtube_thumbnail_url || "",
+              thumbnailFile: null,
+              thumbnailPreview: null,
+            })),
+          );
         } else {
           setPortfolios([
-            { title: "", description: "", youtubeUrl: "", youtubeThumbnail: "", thumbnailFile: null, existingThumbnailUrl: "", thumbnailPreview: null }
+            {
+              title: "",
+              description: "",
+              youtubeUrl: "",
+              youtubeThumbnail: "",
+              thumbnailFile: null,
+              existingThumbnailUrl: "",
+              thumbnailPreview: null,
+            },
           ]);
         }
       } else {
@@ -66,7 +79,15 @@ export default function EditExpertPage() {
   const addPortfolio = () => {
     setPortfolios([
       ...portfolios,
-      { title: "", description: "", youtubeUrl: "", youtubeThumbnail: "", thumbnailFile: null, existingThumbnailUrl: "", thumbnailPreview: null },
+      {
+        title: "",
+        description: "",
+        youtubeUrl: "",
+        youtubeThumbnail: "",
+        thumbnailFile: null,
+        existingThumbnailUrl: "",
+        thumbnailPreview: null,
+      },
     ]);
   };
 
@@ -89,7 +110,7 @@ export default function EditExpertPage() {
     try {
       const form = e.currentTarget;
       const formData = new FormData(form);
-      
+
       const name = formData.get("name") as string;
       const category = formData.get("category") as string;
       const experience = formData.get("experience") as string;
@@ -99,29 +120,30 @@ export default function EditExpertPage() {
       const tagsString = formData.get("tags") as string;
 
       const supabase = createClient();
-      
+
       // 1. 프로필 이미지 업로드 (변경된 경우에만)
       let profile_image_url = existingProfileImageUrl;
       if (profileImageFile) {
-        const fileExt = profileImageFile.name.split('.').pop();
+        const fileExt = profileImageFile.name.split(".").pop();
         const fileName = `profiles/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-        
+
         const { error: uploadError } = await supabase.storage
-          .from('images')
+          .from("images")
           .upload(fileName, profileImageFile);
 
-        if (uploadError) throw new Error(`이미지 업로드 실패: ${uploadError.message}`);
-        
+        if (uploadError)
+          throw new Error(`이미지 업로드 실패: ${uploadError.message}`);
+
         const { data: publicUrlData } = supabase.storage
-          .from('images')
+          .from("images")
           .getPublicUrl(fileName);
-        
+
         profile_image_url = publicUrlData.publicUrl;
       }
 
       // 2. 전문가(experts) 정보 Update
       const { error: expertError } = await supabase
-        .from('experts')
+        .from("experts")
         .update({
           name,
           category,
@@ -130,17 +152,21 @@ export default function EditExpertPage() {
           quote,
           bio,
           tags: tagsString,
-          profile_image_url
+          profile_image_url,
         })
-        .eq('id', expertId);
+        .eq("id", expertId);
 
-      if (expertError) throw new Error(`정보 수정 실패: ${expertError.message}`);
+      if (expertError)
+        throw new Error(`정보 수정 실패: ${expertError.message}`);
 
       // 3. 기존 포트폴리오 삭제 후 다시 Insert (단순화를 위해)
-      await supabase.from('portfolios').delete().eq('expert_id', expertId);
+      await supabase.from("portfolios").delete().eq("expert_id", expertId);
 
-      const validPortfolios = portfolios.filter(p => p.title || p.youtubeUrl || p.thumbnailFile || p.existingThumbnailUrl);
-      
+      const validPortfolios = portfolios.filter(
+        (p) =>
+          p.title || p.youtubeUrl || p.thumbnailFile || p.existingThumbnailUrl,
+      );
+
       if (validPortfolios.length > 0) {
         const portfoliosToInsert = [];
 
@@ -148,19 +174,20 @@ export default function EditExpertPage() {
           let youtube_thumbnail_url = port.existingThumbnailUrl; // 기존 URL 유지
 
           if (port.thumbnailFile) {
-            const fileExt = port.thumbnailFile.name.split('.').pop();
+            const fileExt = port.thumbnailFile.name.split(".").pop();
             const fileName = `portfolios/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-            
+
             const { error: uploadError } = await supabase.storage
-              .from('images')
+              .from("images")
               .upload(fileName, port.thumbnailFile);
 
-            if (uploadError) throw new Error(`썸네일 업로드 실패: ${uploadError.message}`);
-            
+            if (uploadError)
+              throw new Error(`썸네일 업로드 실패: ${uploadError.message}`);
+
             const { data: publicUrlData } = supabase.storage
-              .from('images')
+              .from("images")
               .getPublicUrl(fileName);
-            
+
             youtube_thumbnail_url = publicUrlData.publicUrl;
           }
 
@@ -169,21 +196,21 @@ export default function EditExpertPage() {
             title: port.title,
             description: port.description,
             youtube_url: port.youtubeUrl,
-            youtube_thumbnail_url
+            youtube_thumbnail_url,
           });
         }
 
         const { error: portfoliosError } = await supabase
-          .from('portfolios')
+          .from("portfolios")
           .insert(portfoliosToInsert);
 
-        if (portfoliosError) throw new Error(`포트폴리오 저장 실패: ${portfoliosError.message}`);
+        if (portfoliosError)
+          throw new Error(`포트폴리오 저장 실패: ${portfoliosError.message}`);
       }
 
       alert("성공적으로 수정되었습니다!");
       router.push(`/experts/${expertId}`);
       router.refresh();
-
     } catch (error: any) {
       console.error(error);
       alert(error.message || "수정 중 오류가 발생했습니다.");
@@ -236,15 +263,21 @@ export default function EditExpertPage() {
               <label htmlFor="category">
                 시공 분야 <span className="required">*</span>
               </label>
-              <select id="category" name="category" required className="form-control" defaultValue={expertData?.category}>
+              <select
+                id="category"
+                name="category"
+                required
+                className="form-control"
+                defaultValue={expertData?.category}
+              >
                 <option value="">분야 선택</option>
+                <option value="total">토탈</option>
                 <option value="demolition">철거</option>
                 <option value="tile">타일</option>
                 <option value="carpentry">목공</option>
                 <option value="wallpaper">도배</option>
                 <option value="furniture">가구</option>
                 <option value="electric">전기</option>
-                <option value="total">토탈</option>
                 <option value="other">기타</option>
               </select>
             </div>
@@ -297,21 +330,23 @@ export default function EditExpertPage() {
                   }
                 }}
               />
-              {(profileImagePreview || existingProfileImageUrl) ? (
-                <label 
+              {profileImagePreview || existingProfileImageUrl ? (
+                <label
                   htmlFor="profileImage"
                   className="block relative w-32 h-32 rounded-lg overflow-hidden border border-[var(--color-border)] group cursor-pointer"
                   title="프로필 이미지 교체"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={profileImagePreview || existingProfileImageUrl} 
-                    alt="Profile Preview" 
-                    className="w-full h-full object-cover" 
+                  <img
+                    src={profileImagePreview || existingProfileImageUrl}
+                    alt="Profile Preview"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
                     <ImageIcon size={24} />
-                    <span className="text-xs font-medium mt-1">이미지 교체</span>
+                    <span className="text-xs font-medium mt-1">
+                      이미지 교체
+                    </span>
                   </div>
                 </label>
               ) : (
@@ -405,7 +440,9 @@ export default function EditExpertPage() {
                     type="text"
                     className="form-control"
                     value={port.title}
-                    onChange={(e) => updatePortfolio(index, "title", e.target.value)}
+                    onChange={(e) =>
+                      updatePortfolio(index, "title", e.target.value)
+                    }
                     placeholder="예: 압구정 현대아파트 전체 리모델링"
                   />
                 </div>
@@ -423,11 +460,15 @@ export default function EditExpertPage() {
                         if (file) {
                           updatePortfolio(index, "youtubeThumbnail", file.name);
                           updatePortfolio(index, "thumbnailFile", file);
-                          updatePortfolio(index, "thumbnailPreview", URL.createObjectURL(file));
+                          updatePortfolio(
+                            index,
+                            "thumbnailPreview",
+                            URL.createObjectURL(file),
+                          );
                         }
                       }}
                     />
-                    {(port.thumbnailPreview || port.existingThumbnailUrl) ? (
+                    {port.thumbnailPreview || port.existingThumbnailUrl ? (
                       <label
                         htmlFor={`thumbnail-${index}`}
                         className="block relative w-full max-w-full rounded-lg overflow-hidden border border-[var(--color-border)] group cursor-pointer mb-2"
@@ -435,13 +476,17 @@ export default function EditExpertPage() {
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={port.thumbnailPreview || port.existingThumbnailUrl}
+                          src={
+                            port.thumbnailPreview || port.existingThumbnailUrl
+                          }
                           alt="Thumbnail Preview"
                           className="w-full h-auto block"
                         />
                         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
                           <ImageIcon size={24} />
-                          <span className="text-sm font-medium mt-1">썸네일 교체</span>
+                          <span className="text-sm font-medium mt-1">
+                            썸네일 교체
+                          </span>
                         </div>
                       </label>
                     ) : (
@@ -457,7 +502,9 @@ export default function EditExpertPage() {
                       type="url"
                       className="form-control"
                       value={port.youtubeUrl}
-                      onChange={(e) => updatePortfolio(index, "youtubeUrl", e.target.value)}
+                      onChange={(e) =>
+                        updatePortfolio(index, "youtubeUrl", e.target.value)
+                      }
                       placeholder="https://youtube.com/watch?v=..."
                     />
                   </div>
@@ -468,7 +515,9 @@ export default function EditExpertPage() {
                     type="text"
                     className="form-control"
                     value={port.description}
-                    onChange={(e) => updatePortfolio(index, "description", e.target.value)}
+                    onChange={(e) =>
+                      updatePortfolio(index, "description", e.target.value)
+                    }
                     placeholder="투입된 인력과 시공 포인트를 적어주세요."
                   />
                 </div>
@@ -477,7 +526,8 @@ export default function EditExpertPage() {
 
             {portfolios.length === 0 && (
               <div className="text-center p-10 border-2 border-dashed border-[var(--color-border)] rounded-[var(--radius-lg)] text-[var(--color-text-tertiary)] text-sm">
-                등록된 포트폴리오가 없습니다. [포트폴리오 추가] 버튼을 눌러주세요.
+                등록된 포트폴리오가 없습니다. [포트폴리오 추가] 버튼을
+                눌러주세요.
               </div>
             )}
 

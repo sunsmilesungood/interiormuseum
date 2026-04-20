@@ -4,13 +4,13 @@ import { Expert } from "@/data/dummyExperts";
 import ExpertsSection from "@/components/ExpertsSection";
 
 const categoryMap: Record<string, string> = {
+  total: "토탈",
   demolition: "철거",
   tile: "타일",
   carpentry: "목공",
   wallpaper: "도배",
   furniture: "가구",
   electric: "전기",
-  total: "토탈",
   other: "기타",
 };
 
@@ -18,7 +18,9 @@ async function ExpertsGrid() {
   const supabase = await createClient();
   const { data: dbExperts } = await supabase
     .from("experts")
-    .select("id, name, category, specialty, bio, experience, profile_image_url, quote, tags")
+    .select(
+      "id, name, category, specialty, bio, experience, profile_image_url, quote, tags",
+    )
     .order("created_at", { ascending: false });
 
   const experts: Expert[] = (dbExperts || []).map((row: any) => ({

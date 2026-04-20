@@ -22,13 +22,13 @@ export async function sendContactEmail(
   const message = formData.get("message") as string;
 
   const categoryLabel: Record<string, string> = {
+    total: "토탈",
     demolition: "철거",
     tile: "타일",
     carpentry: "목공",
     wallpaper: "도배",
     furniture: "가구",
     electric: "전기",
-    total: "토탈",
     other: "기타",
   };
 

@@ -8,6 +8,7 @@ import ExpertCard from "./ExpertCard";
 
 const CATEGORIES = [
   "전체",
+  "토탈",
   "철거",
   "타일",
   "목공",
@@ -15,7 +16,6 @@ const CATEGORIES = [
   "가구",
   "전기",
   "창호",
-  "토탈",
   "기타",
 ];
 

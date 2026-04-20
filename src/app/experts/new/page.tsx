@@ -208,13 +208,13 @@ export default function NewExpertPage() {
                 className="form-control"
               >
                 <option value="">분야 선택</option>
+                <option value="total">토탈</option>
                 <option value="demolition">철거</option>
                 <option value="tile">타일</option>
                 <option value="carpentry">목공</option>
                 <option value="wallpaper">도배</option>
                 <option value="furniture">가구</option>
                 <option value="electric">전기</option>
-                <option value="total">토탈</option>
                 <option value="other">기타</option>
               </select>
             </div>
@@ -266,20 +266,22 @@ export default function NewExpertPage() {
                 }}
               />
               {profileImagePreview ? (
-                <label 
+                <label
                   htmlFor="profileImage"
                   className="block relative w-32 h-32 rounded-lg overflow-hidden border border-[var(--color-border)] group cursor-pointer"
                   title="프로필 이미지 교체"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={profileImagePreview} 
-                    alt="Profile Preview" 
-                    className="w-full h-full object-cover" 
+                  <img
+                    src={profileImagePreview}
+                    alt="Profile Preview"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
                     <ImageIcon size={24} />
-                    <span className="text-xs font-medium mt-1">이미지 교체</span>
+                    <span className="text-xs font-medium mt-1">
+                      이미지 교체
+                    </span>
                   </div>
                 </label>
               ) : (
@@ -388,11 +390,7 @@ export default function NewExpertPage() {
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) {
-                          updatePortfolio(
-                            index,
-                            "youtubeThumbnail",
-                            file.name,
-                          );
+                          updatePortfolio(index, "youtubeThumbnail", file.name);
                           updatePortfolio(index, "thumbnailFile", file);
                           updatePortfolio(
                             index,
@@ -416,7 +414,9 @@ export default function NewExpertPage() {
                         />
                         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 text-white">
                           <ImageIcon size={24} />
-                          <span className="text-sm font-medium mt-1">썸네일 교체</span>
+                          <span className="text-sm font-medium mt-1">
+                            썸네일 교체
+                          </span>
                         </div>
                       </label>
                     ) : (
