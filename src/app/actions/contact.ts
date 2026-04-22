@@ -35,7 +35,7 @@ export async function sendContactEmail(
   try {
     await resend.emails.send({
       from: "인테리어뮤지엄 <onboarding@resend.dev>",
-      to: ["kimhogy@gmail.com"], // 가입한 이메일만 허용됨(무료플랜)
+      to: ["interiormu@naver.com"], // 가입한 이메일만 허용됨(무료플랜)
       subject: `[문의] ${name}님의 프로젝트 문의`,
       html: `
         <h2>새로운 프로젝트 문의가 접수되었습니다.</h2>
