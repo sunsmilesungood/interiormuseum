@@ -259,7 +259,7 @@ export default async function Home() {
                   </div>
                   <div className="contact__info-item-text">
                     <h4>이메일 문의</h4>
-                    <p>contact@interiormuseum.com</p>
+                    <p>interiormu@naver.com</p>
                   </div>
                 </div>
                 {/* <div className="contact__info-item">

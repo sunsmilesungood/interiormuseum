@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="footer__link-group">
               <h4>고객센터</h4>
               {/* <Link href="#">자주 묻는 질문</Link> */}
-              <a href="mailto:contact@interiormuseum.com">이메일 문의</a>
+              <a href="mailto:interiormu@naver.com">이메일 문의</a>
               <a href="tel:02-1234-5678">전화 문의</a>
             </div>
           </div>
