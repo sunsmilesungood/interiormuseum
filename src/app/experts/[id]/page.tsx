@@ -97,7 +97,7 @@ export default async function ExpertDetailPage({ params }: Props) {
               </span>
               <h1 className="profile-content__name">{expert.name}</h1>
               <p className="profile-content__subtitle">
-                {expert.specialty} · {expert.experience} · 전국
+                {expert.specialty} · {expert.experience}
               </p>
 
               {expert.quote && (
